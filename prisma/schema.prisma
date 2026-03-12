@@ -1,8 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Get a free hosted Postgres database in seconds: `npx create-db`
-
 generator client {
   provider = "prisma-client"
   output   = "../src/generated/prisma"
@@ -10,4 +5,330 @@ generator client {
 
 datasource db {
   provider = "sqlite"
+}
+
+// ─── Module 1: Trips ─────────────────────────────────────────
+model Trip {
+  id            String   @id @default(uuid())
+  title         String
+  country       String?
+  startDate     String?  // ISO date
+  endDate       String?  // ISO date
+  baseCurrency  String   @default("EUR")
+  notes         String?
+  status        String   @default("planning") // planning, confirmed, ongoing, finished, archived
+  coverImage    String?
+  timezone      String   @default("Europe/Madrid")
+  dateFormat    String   @default("dd/MM/yyyy")
+  departureFromHome String? // ISO date
+  returnHome    String?    // ISO date
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  cities         TripCity[]
+  segments       Segment[]
+  itineraryItems ItineraryItem[]
+  bookings       Booking[]
+  documents      Document[]
+  checklistItems ChecklistItem[]
+  packingItems   PackingItem[]
+  expenses       Expense[]
+  paymentMethods PaymentMethod[]
+  contacts       Contact[]
+  notes_         Note[]
+  usefulLinks    UsefulLink[]
+  tasks          Task[]
+  cityReviews    CityReview[]
+  attachments    Attachment[]
+}
+
+// ─── Module 2: Cities ────────────────────────────────────────
+model TripCity {
+  id            String   @id @default(uuid())
+  tripId        String
+  name          String
+  country       String?
+  arrivalDate   String?  // ISO date
+  departureDate String?  // ISO date
+  plannedNights Int?
+  notes         String?
+  sortOrder     Int      @default(0)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  trip           Trip            @relation(fields: [tripId], references: [id], onDelete: Cascade)
+  itineraryItems ItineraryItem[]
+  bookings       Booking[]
+  expenses       Expense[]
+  contacts       Contact[]
+  notes_         Note[]
+  usefulLinks    UsefulLink[]
+  tasks          Task[]
+  cityReview     CityReview?
+  segmentsFrom   Segment[]       @relation("fromCity")
+  segmentsTo     Segment[]       @relation("toCity")
+}
+
+// ─── Module 2: Segments ──────────────────────────────────────
+model Segment {
+  id                String   @id @default(uuid())
+  tripId            String
+  fromCityId        String?
+  toCityId          String?
+  transportType     String   @default("flight") // flight, train, bus, car, walk, ferry, other
+  departureDatetime String?  // ISO datetime
+  arrivalDatetime   String?  // ISO datetime
+  bookingReference  String?
+  provider          String?
+  seatInfo          String?
+  notes             String?
+  sortOrder         Int      @default(0)
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  trip     Trip      @relation(fields: [tripId], references: [id], onDelete: Cascade)
+  fromCity TripCity? @relation("fromCity", fields: [fromCityId], references: [id], onDelete: SetNull)
+  toCity   TripCity? @relation("toCity", fields: [toCityId], references: [id], onDelete: SetNull)
+}
+
+// ─── Module 3: Itinerary ─────────────────────────────────────
+model ItineraryItem {
+  id            String   @id @default(uuid())
+  tripId        String
+  cityId        String?
+  date          String   // ISO date
+  title         String
+  description   String?
+  startTime     String?  // HH:mm
+  endTime       String?  // HH:mm
+  locationName  String?
+  address       String?
+  googleMapsUrl String?
+  category      String   @default("other") // tour, food, museum, walk, shopping, admin, rest, transport, other
+  status        String   @default("planned") // planned, done, skipped
+  sortOrder     Int      @default(0)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  trip Trip      @relation(fields: [tripId], references: [id], onDelete: Cascade)
+  city TripCity? @relation(fields: [cityId], references: [id], onDelete: SetNull)
+}
+
+// ─── Module 4: Bookings ──────────────────────────────────────
+model Booking {
+  id             String   @id @default(uuid())
+  tripId         String
+  cityId         String?
+  type           String   @default("other") // accommodation, flight, train, bus, car_rental, ticket, restaurant, insurance, other
+  title          String
+  provider       String?
+  bookingCode    String?
+  startDatetime  String?  // ISO datetime
+  endDatetime    String?  // ISO datetime
+  address        String?
+  priceAmount    Float?
+  priceCurrency  String?
+  paymentStatus  String   @default("pending") // paid, pending, cancelled
+  notes          String?
+  attachmentUrl  String?
+  externalUrl    String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  trip Trip      @relation(fields: [tripId], references: [id], onDelete: Cascade)
+  city TripCity? @relation(fields: [cityId], references: [id], onDelete: SetNull)
+}
+
+// ─── Module 5: Documents ─────────────────────────────────────
+model Document {
+  id           String   @id @default(uuid())
+  tripId       String
+  documentType String   @default("other") // passport, cnh, pid, travel_insurance, accommodation_proof, ticket, booking, financial_proof, personal_checklist, other
+  title        String
+  description  String?
+  fileUrl      String?
+  issuedAt     String?  // ISO date
+  expiresAt    String?  // ISO date
+  isCritical   Boolean  @default(false)
+  tags         String?  // comma-separated
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  trip Trip @relation(fields: [tripId], references: [id], onDelete: Cascade)
+}
+
+// ─── Module 6: Checklist ─────────────────────────────────────
+model ChecklistItem {
+  id          String   @id @default(uuid())
+  tripId      String
+  category    String   @default("other") // documents, financial, luggage, health, tech, bookings, transport, home, other
+  title       String
+  description String?
+  dueDate     String?  // ISO date
+  isCompleted Boolean  @default(false)
+  sortOrder   Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  trip Trip @relation(fields: [tripId], references: [id], onDelete: Cascade)
+}
+
+// ─── Module 7: Packing ──────────────────────────────────────
+model PackingItem {
+  id       String  @id @default(uuid())
+  tripId   String
+  bagType  String  @default("main_suitcase") // main_suitcase, backpack, document_folder, on_body
+  itemName String
+  category String  @default("other") // clothes, hygiene, electronics, medicine, documents, accessories, cold_weather, beach, other
+  quantity Int     @default(1)
+  isPacked Boolean @default(false)
+  notes    String?
+  isEssential Boolean @default(false)
+  sortOrder Int    @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  trip Trip @relation(fields: [tripId], references: [id], onDelete: Cascade)
+}
+
+// ─── Module 8: Expenses ──────────────────────────────────────
+model Expense {
+  id                  String   @id @default(uuid())
+  tripId              String
+  cityId              String?
+  category            String   @default("other") // accommodation, transport, food, tickets, shopping, insurance, internet, laundry, emergency, other
+  description         String
+  amount              Float
+  currency            String   @default("EUR")
+  convertedAmountBase Float?
+  expenseDate         String?  // ISO date
+  paymentMethod       String?
+  isPlanned           Boolean  @default(false)
+  notes               String?
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+
+  trip Trip      @relation(fields: [tripId], references: [id], onDelete: Cascade)
+  city TripCity? @relation(fields: [cityId], references: [id], onDelete: SetNull)
+}
+
+model PaymentMethod {
+  id             String   @id @default(uuid())
+  tripId         String
+  type           String   @default("credit_card") // cash, credit_card, debit_card, account
+  name           String
+  currency       String   @default("EUR")
+  initialBalance Float?
+  notes          String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  trip Trip @relation(fields: [tripId], references: [id], onDelete: Cascade)
+}
+
+// ─── Module 9: Contacts ──────────────────────────────────────
+model Contact {
+  id       String  @id @default(uuid())
+  tripId   String
+  cityId   String?
+  name     String
+  type     String  @default("other") // friend, hotel, host, rental, insurance, emergency, transport, restaurant, other
+  phone    String?
+  whatsapp String?
+  email    String?
+  address  String?
+  notes    String?
+  isFavorite Boolean @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  trip Trip      @relation(fields: [tripId], references: [id], onDelete: Cascade)
+  city TripCity? @relation(fields: [cityId], references: [id], onDelete: SetNull)
+}
+
+// ─── Module 10: Notes ────────────────────────────────────────
+model Note {
+  id        String   @id @default(uuid())
+  tripId    String
+  cityId    String?
+  title     String
+  content   String?
+  tags      String?  // comma-separated
+  pinned    Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  trip Trip      @relation(fields: [tripId], references: [id], onDelete: Cascade)
+  city TripCity? @relation(fields: [cityId], references: [id], onDelete: SetNull)
+}
+
+// ─── Module 11: Useful Links ─────────────────────────────────
+model UsefulLink {
+  id       String   @id @default(uuid())
+  tripId   String
+  cityId   String?
+  title    String
+  url      String
+  category String   @default("other") // maps, booking, restaurant, tickets, transport, government, weather, other
+  notes    String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  trip Trip      @relation(fields: [tripId], references: [id], onDelete: Cascade)
+  city TripCity? @relation(fields: [cityId], references: [id], onDelete: SetNull)
+}
+
+// ─── Module 14: Tasks ────────────────────────────────────────
+model Task {
+  id          String   @id @default(uuid())
+  tripId      String
+  cityId      String?
+  title       String
+  description String?
+  dueDate     String?  // ISO date
+  priority    String   @default("medium") // low, medium, high, urgent
+  status      String   @default("pending") // pending, in_progress, done
+  category    String   @default("personal") // before_trip, during_trip, documents, financial, booking, transport, personal
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  trip Trip      @relation(fields: [tripId], references: [id], onDelete: Cascade)
+  city TripCity? @relation(fields: [cityId], references: [id], onDelete: SetNull)
+}
+
+// ─── Module 16: City Reviews ─────────────────────────────────
+model CityReview {
+  id              String   @id @default(uuid())
+  tripId          String
+  cityId          String   @unique
+  costScore       Int?     // 1-10
+  safetyScore     Int?     // 1-10
+  beautyScore     Int?     // 1-10
+  climateScore    Int?     // 1-10
+  transportScore  Int?     // 1-10
+  lifestyleScore  Int?     // 1-10
+  wouldLiveHere   Boolean  @default(false)
+  pros            String?
+  cons            String?
+  finalNotes      String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  trip Trip     @relation(fields: [tripId], references: [id], onDelete: Cascade)
+  city TripCity @relation(fields: [cityId], references: [id], onDelete: Cascade)
+}
+
+// ─── Module 18: Attachments ──────────────────────────────────
+model Attachment {
+  id         String   @id @default(uuid())
+  tripId     String
+  entityType String   // booking, document, note, task
+  entityId   String
+  fileName   String
+  fileUrl    String
+  fileType   String?  // pdf, jpg, png, webp
+  fileSize   Int?
+  createdAt  DateTime @default(now())
+
+  trip Trip @relation(fields: [tripId], references: [id], onDelete: Cascade)
 }
