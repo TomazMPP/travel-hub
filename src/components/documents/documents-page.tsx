@@ -387,7 +387,7 @@ export function DocumentsPage({
             : "Nenhum documento adicionado ainda."}
         </p>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {filteredDocuments.map((doc) => {
             const Icon = documentTypeIcons[doc.documentType] || FileText;
             const typeLabel =
@@ -547,7 +547,7 @@ export function DocumentsPage({
               {editing ? "Editar Documento" : "Novo Documento"}
             </DialogTitle>
           </DialogHeader>
-          <form onSubmit={handleSubmit} className="space-y-3">
+          <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <Label htmlFor="title">Titulo *</Label>
               <Input
@@ -597,7 +597,7 @@ export function DocumentsPage({
               />
             </div>
 
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-2 gap-4">
               <div>
                 <Label htmlFor="issuedAt">Data de emissao</Label>
                 <Input

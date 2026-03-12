@@ -304,7 +304,7 @@ export function ItineraryPage({
 
   // ── Render ────────────────────────────────────────────────
   return (
-    <div className="mx-auto max-w-2xl px-4 py-6 space-y-4">
+    <div className="mx-auto max-w-2xl px-4 py-6 space-y-5">
       {/* Date Navigation */}
       <div className="flex items-center gap-2">
         <Button
@@ -384,7 +384,7 @@ export function ItineraryPage({
 
       {/* Timed items */}
       {timedItems.length > 0 && (
-        <div className="space-y-2">
+        <div className="space-y-3">
           {timedItems.map((item) => (
             <ItemCard
               key={item.id}
@@ -400,7 +400,7 @@ export function ItineraryPage({
 
       {/* Untimed items */}
       {untimedItems.length > 0 && (
-        <div className="space-y-2">
+        <div className="space-y-3">
           {timedItems.length > 0 && (
             <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider pt-2">
               Sem horário definido
@@ -443,7 +443,7 @@ export function ItineraryPage({
             </DialogTitle>
           </DialogHeader>
 
-          <div className="grid gap-3 py-2">
+          <div className="grid gap-4 py-2">
             <div>
               <Label htmlFor="itinerary-title">Título *</Label>
               <Input
@@ -454,7 +454,7 @@ export function ItineraryPage({
               />
             </div>
 
-            <div className="grid grid-cols-2 gap-2">
+            <div className="grid grid-cols-2 gap-3">
               <div>
                 <Label htmlFor="itinerary-date">Data *</Label>
                 <Input
@@ -481,7 +481,7 @@ export function ItineraryPage({
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-2">
+            <div className="grid grid-cols-2 gap-3">
               <div>
                 <Label htmlFor="itinerary-start">Início</Label>
                 <Input

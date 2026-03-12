@@ -87,7 +87,7 @@ export function PackingPage({ tripId, items }: { tripId: string; items: PackingI
   }
 
   return (
-    <div className="p-4 md:p-6 max-w-3xl mx-auto space-y-4">
+    <div className="p-4 md:p-6 max-w-3xl mx-auto space-y-5">
       {/* Progress */}
       <Card>
         <CardContent className="p-4">
@@ -171,7 +171,7 @@ export function PackingPage({ tripId, items }: { tripId: string; items: PackingI
 
           return (
             <Card key={bagType}>
-              <CardContent className="p-3">
+              <CardContent className="p-4">
                 <div className="flex items-center gap-2 mb-3">
                   <Luggage className="h-4 w-4" />
                   <span className="font-semibold text-sm">{bag?.label || bagType}</span>
@@ -184,13 +184,13 @@ export function PackingPage({ tripId, items }: { tripId: string; items: PackingI
                 {Object.entries(byCategory).map(([category, catItems]) => {
                   const cat = PACKING_CATEGORIES.find((c) => c.value === category);
                   return (
-                    <div key={category} className="mb-2 last:mb-0">
+                    <div key={category} className="mb-3 last:mb-0">
                       <p className="text-xs text-muted-foreground font-medium mb-1 pl-1">
                         {cat?.label || category}
                       </p>
                       {catItems.map((item) => (
                         <div key={item.id}
-                          className="flex items-center gap-2 group rounded-md px-2 py-1 hover:bg-accent/50 transition-colors"
+                          className="flex items-center gap-2.5 group rounded-md px-2.5 py-1.5 hover:bg-accent/50 transition-colors"
                         >
                           <button onClick={() => { togglePackingItem(item.id); router.refresh(); }} className="shrink-0">
                             {item.isPacked ? (
@@ -230,12 +230,12 @@ export function PackingPage({ tripId, items }: { tripId: string; items: PackingI
           <DialogHeader>
             <DialogTitle>Adicionar Item</DialogTitle>
           </DialogHeader>
-          <form onSubmit={handleAddSubmit} className="space-y-3">
+          <form onSubmit={handleAddSubmit} className="space-y-4">
             <div>
               <Label htmlFor="itemName">Nome *</Label>
               <Input id="itemName" name="itemName" required placeholder="Ex: Camiseta preta" />
             </div>
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-2 gap-4">
               <div>
                 <Label htmlFor="bagType">Mala</Label>
                 <select id="bagType" name="bagType" defaultValue="main_suitcase"
@@ -253,7 +253,7 @@ export function PackingPage({ tripId, items }: { tripId: string; items: PackingI
                 </select>
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-2 gap-4">
               <div>
                 <Label htmlFor="quantity">Quantidade</Label>
                 <Input id="quantity" name="quantity" type="number" defaultValue={1} min={1} />

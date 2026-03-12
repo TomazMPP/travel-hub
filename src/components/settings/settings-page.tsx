@@ -65,13 +65,13 @@ export function SettingsPage({ trip }: { trip: Trip }) {
 
       <form onSubmit={handleSubmit}>
         <Card>
-          <CardContent className="p-4 space-y-4">
+          <CardContent className="p-5 space-y-5">
             <div>
               <Label htmlFor="title">Nome da viagem *</Label>
               <Input id="title" name="title" defaultValue={trip.title} required />
             </div>
 
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-2 gap-4">
               <div>
                 <Label htmlFor="country">País / Região</Label>
                 <Input id="country" name="country" defaultValue={trip.country || ""} />
@@ -88,7 +88,7 @@ export function SettingsPage({ trip }: { trip: Trip }) {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-2 gap-4">
               <div>
                 <Label htmlFor="startDate">Data início</Label>
                 <Input id="startDate" name="startDate" type="date" defaultValue={trip.startDate || ""} />
@@ -99,7 +99,7 @@ export function SettingsPage({ trip }: { trip: Trip }) {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-2 gap-4">
               <div>
                 <Label htmlFor="departureFromHome">Partida do Brasil</Label>
                 <Input id="departureFromHome" name="departureFromHome" type="date" defaultValue={trip.departureFromHome || ""} />
@@ -110,7 +110,7 @@ export function SettingsPage({ trip }: { trip: Trip }) {
               </div>
             </div>
 
-            <div className="grid grid-cols-3 gap-3">
+            <div className="grid grid-cols-3 gap-4">
               <div>
                 <Label htmlFor="baseCurrency">Moeda base</Label>
                 <select id="baseCurrency" name="baseCurrency" defaultValue={trip.baseCurrency}

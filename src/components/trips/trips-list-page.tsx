@@ -116,7 +116,7 @@ export function TripsListPage({ trips }: { trips: TripWithCounts[] }) {
                 <Label htmlFor="country">País / Região</Label>
                 <Input id="country" name="country" placeholder="Ex: Espanha" />
               </div>
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-2 gap-4">
                 <div>
                   <Label htmlFor="startDate">Início</Label>
                   <Input id="startDate" name="startDate" type="date" />

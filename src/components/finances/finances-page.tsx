@@ -144,23 +144,23 @@ export function FinancesPage({
   }
 
   return (
-    <div className="p-4 md:p-6 max-w-4xl mx-auto space-y-4">
+    <div className="p-4 md:p-6 max-w-4xl mx-auto space-y-5">
       {/* Summary Cards */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <Card>
-          <CardContent className="p-3">
+          <CardContent className="p-4">
             <p className="text-xs text-muted-foreground">Total gasto</p>
             <p className="text-lg font-bold">{baseCurrency} {totalReal.toFixed(2)}</p>
           </CardContent>
         </Card>
         <Card>
-          <CardContent className="p-3">
+          <CardContent className="p-4">
             <p className="text-xs text-muted-foreground">Orçamento</p>
             <p className="text-lg font-bold">{baseCurrency} {totalPlanned.toFixed(2)}</p>
           </CardContent>
         </Card>
         <Card>
-          <CardContent className="p-3">
+          <CardContent className="p-4">
             <p className="text-xs text-muted-foreground">Saldo estimado</p>
             <p className={`text-lg font-bold ${totalPlanned - totalReal < 0 ? "text-red-400" : "text-green-400"}`}>
               {baseCurrency} {(totalPlanned - totalReal).toFixed(2)}
@@ -168,7 +168,7 @@ export function FinancesPage({
           </CardContent>
         </Card>
         <Card>
-          <CardContent className="p-3">
+          <CardContent className="p-4">
             <p className="text-xs text-muted-foreground">Média/dia</p>
             <p className="text-lg font-bold">{baseCurrency} {avgPerDay.toFixed(2)}</p>
           </CardContent>
@@ -176,11 +176,11 @@ export function FinancesPage({
       </div>
 
       {/* Breakdown Cards */}
-      <div className="grid md:grid-cols-2 gap-3">
+      <div className="grid md:grid-cols-2 gap-4">
         {/* By City */}
         {Object.keys(byCity).length > 0 && (
           <Card>
-            <CardContent className="p-3">
+            <CardContent className="p-4">
               <h3 className="text-sm font-semibold mb-2 flex items-center gap-2">
                 <TrendingUp className="h-4 w-4" /> Por cidade
               </h3>
@@ -199,7 +199,7 @@ export function FinancesPage({
         {/* By Category */}
         {Object.keys(byCategory).length > 0 && (
           <Card>
-            <CardContent className="p-3">
+            <CardContent className="p-4">
               <h3 className="text-sm font-semibold mb-2 flex items-center gap-2">
                 <DollarSign className="h-4 w-4" /> Por categoria
               </h3>
@@ -221,7 +221,7 @@ export function FinancesPage({
 
       {/* Payment Methods */}
       <Card>
-        <CardContent className="p-3">
+        <CardContent className="p-4">
           <div className="flex items-center justify-between mb-2">
             <h3 className="text-sm font-semibold flex items-center gap-2">
               <CreditCard className="h-4 w-4" /> Meios de Pagamento
@@ -270,12 +270,12 @@ export function FinancesPage({
       {filtered.length === 0 ? (
         <p className="text-sm text-muted-foreground py-8 text-center">Nenhum gasto registrado.</p>
       ) : (
-        <div className="space-y-2">
+        <div className="space-y-3">
           {filtered.map((expense) => {
             const cat = EXPENSE_CATEGORIES.find((c) => c.value === expense.category);
             return (
               <Card key={expense.id}>
-                <CardContent className="p-3 flex items-center gap-3">
+                <CardContent className="p-4 flex items-center gap-3">
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2">
                       <span className="text-sm font-medium truncate">{expense.description}</span>
@@ -320,12 +320,12 @@ export function FinancesPage({
           <DialogHeader>
             <DialogTitle>{editingExpense ? "Editar Gasto" : "Novo Gasto"}</DialogTitle>
           </DialogHeader>
-          <form onSubmit={handleExpenseSubmit} className="space-y-3">
+          <form onSubmit={handleExpenseSubmit} className="space-y-4">
             <div>
               <Label>Descrição *</Label>
               <Input name="description" required defaultValue={editingExpense?.description || ""} placeholder="Ex: Jantar em Madrid" />
             </div>
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-2 gap-4">
               <div>
                 <Label>Valor *</Label>
                 <Input name="amount" type="number" step="0.01" required defaultValue={editingExpense?.amount || ""} />
@@ -342,7 +342,7 @@ export function FinancesPage({
                 </select>
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-2 gap-4">
               <div>
                 <Label>Categoria</Label>
                 <select name="category" defaultValue={editingExpense?.category || "food"}
@@ -356,7 +356,7 @@ export function FinancesPage({
                 <Input name="expenseDate" type="date" defaultValue={editingExpense?.expenseDate || ""} />
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-2 gap-4">
               <div>
                 <Label>Cidade</Label>
                 <select name="cityId" defaultValue={editingExpense?.cityId || ""}
@@ -392,12 +392,12 @@ export function FinancesPage({
           <DialogHeader>
             <DialogTitle>Novo Meio de Pagamento</DialogTitle>
           </DialogHeader>
-          <form onSubmit={handlePaymentMethodSubmit} className="space-y-3">
+          <form onSubmit={handlePaymentMethodSubmit} className="space-y-4">
             <div>
               <Label>Nome *</Label>
               <Input name="name" required placeholder="Ex: Revolut EUR" />
             </div>
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-2 gap-4">
               <div>
                 <Label>Tipo</Label>
                 <select name="type" defaultValue="credit_card"

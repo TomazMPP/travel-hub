@@ -61,7 +61,7 @@ export function SearchPage({ tripId }: { tripId: string }) {
   }, {});
 
   return (
-    <div className="p-4 md:p-6 max-w-3xl mx-auto space-y-4">
+    <div className="p-4 md:p-6 max-w-3xl mx-auto space-y-5">
       <div className="relative">
         <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
         <Input
@@ -92,14 +92,14 @@ export function SearchPage({ tripId }: { tripId: string }) {
               <span className="text-sm font-semibold">{config.label}</span>
               <Badge variant="outline" className="text-[10px]">{typeResults.length}</Badge>
             </div>
-            <div className="space-y-1.5">
+            <div className="space-y-2">
               {typeResults.map((result) => (
                 <Card
                   key={`${result.type}-${result.id}`}
                   className="cursor-pointer hover:border-primary/30 transition-colors"
                   onClick={() => router.push(result.url)}
                 >
-                  <CardContent className="p-2.5">
+                  <CardContent className="p-4">
                     <p className="text-sm font-medium">{result.title}</p>
                     {result.subtitle && (
                       <p className="text-xs text-muted-foreground truncate">{result.subtitle}</p>

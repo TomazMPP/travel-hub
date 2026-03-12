@@ -168,7 +168,7 @@ export function TasksPage({
   const doneCount = tasks.filter((t) => t.status === "done").length;
 
   return (
-    <div className="p-4 md:p-6 max-w-3xl mx-auto space-y-4">
+    <div className="p-4 md:p-6 max-w-3xl mx-auto space-y-5">
       {/* Header stats */}
       <div className="flex items-center gap-3">
         <ClipboardList className="h-5 w-5" />
@@ -236,7 +236,7 @@ export function TasksPage({
           Nenhuma tarefa encontrada. Adicione sua primeira tarefa!
         </p>
       ) : (
-        <div className="space-y-2">
+        <div className="space-y-3">
           {filtered.map((task) => {
             const isDone = task.status === "done";
             const cat = TASK_CATEGORIES.find((c) => c.value === task.category);
@@ -244,7 +244,7 @@ export function TasksPage({
 
             return (
               <Card key={task.id} className={isDone ? "opacity-60" : ""}>
-                <CardContent className="p-3 flex items-start gap-3">
+                <CardContent className="p-4 flex items-start gap-3">
                   <button onClick={() => handleToggle(task.id)} className="shrink-0 mt-0.5">
                     {isDone ? (
                       <CheckCircle2 className="h-5 w-5 text-green-500" />
@@ -310,7 +310,7 @@ export function TasksPage({
           <DialogHeader>
             <DialogTitle>{editingTask ? "Editar Tarefa" : "Nova Tarefa"}</DialogTitle>
           </DialogHeader>
-          <form onSubmit={handleSubmit} className="space-y-3">
+          <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <Label htmlFor="title">Título *</Label>
               <Input
@@ -329,7 +329,7 @@ export function TasksPage({
                 defaultValue={editingTask?.description ?? ""}
               />
             </div>
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-2 gap-4">
               <div>
                 <Label htmlFor="dueDate">Data limite</Label>
                 <Input
@@ -353,7 +353,7 @@ export function TasksPage({
                 </select>
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-2 gap-4">
               <div>
                 <Label htmlFor="category">Categoria</Label>
                 <select

@@ -202,9 +202,9 @@ export function TimelinePage({
           <div className="absolute left-4 top-0 bottom-0 w-px bg-border" />
 
           {Object.entries(grouped).map(([date, dayEvents]) => (
-            <div key={date} className="mb-6">
+            <div key={date} className="mb-8">
               {/* Date header */}
-              <div className="flex items-center gap-3 mb-2 relative">
+              <div className="flex items-center gap-3 mb-3 relative">
                 <div className={`h-8 w-8 rounded-full border-2 flex items-center justify-center text-xs font-bold z-10 ${
                   date === today ? "border-primary bg-primary text-primary-foreground" : "border-border bg-background"
                 }`}>
@@ -217,10 +217,10 @@ export function TimelinePage({
               </div>
 
               {/* Events */}
-              <div className="ml-12 space-y-1.5">
+              <div className="ml-12 space-y-2.5">
                 {dayEvents.map((event, i) => (
                   <Card key={`${date}-${i}`} className="border-l-2" style={{ borderLeftColor: "var(--border)" }}>
-                    <CardContent className="p-2.5 flex items-center gap-2.5">
+                    <CardContent className="p-3.5 flex items-center gap-3">
                       <event.icon className={`h-4 w-4 shrink-0 ${event.color}`} />
                       <div className="flex-1 min-w-0">
                         <p className="text-sm font-medium truncate">{event.title}</p>

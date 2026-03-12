@@ -113,7 +113,7 @@ export function ChecklistPage({ tripId, items }: { tripId: string; items: Checkl
   }
 
   return (
-    <div className="p-4 md:p-6 max-w-3xl mx-auto space-y-4">
+    <div className="p-4 md:p-6 max-w-3xl mx-auto space-y-5">
       {/* Progress */}
       <Card>
         <CardContent className="p-4">
@@ -195,11 +195,11 @@ export function ChecklistPage({ tripId, items }: { tripId: string; items: Checkl
                 </span>
                 <Progress value={catProgress} className="h-1 flex-1 max-w-20" />
               </div>
-              <div className="space-y-1">
+              <div className="space-y-1.5">
                 {categoryItems.map((item) => (
                   <div
                     key={item.id}
-                    className="flex items-center gap-2 group rounded-md px-2 py-1.5 hover:bg-accent/50 transition-colors"
+                    className="flex items-center gap-2.5 group rounded-md px-2.5 py-2 hover:bg-accent/50 transition-colors"
                   >
                     <button onClick={() => handleToggle(item.id)} className="shrink-0">
                       {item.isCompleted ? (
@@ -236,7 +236,7 @@ export function ChecklistPage({ tripId, items }: { tripId: string; items: Checkl
           <DialogHeader>
             <DialogTitle>Adicionar Item</DialogTitle>
           </DialogHeader>
-          <form onSubmit={handleAddSubmit} className="space-y-3">
+          <form onSubmit={handleAddSubmit} className="space-y-4">
             <div>
               <Label htmlFor="title">Título *</Label>
               <Input id="title" name="title" required />

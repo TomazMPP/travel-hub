@@ -150,7 +150,7 @@ export function NotesPage({
   }
 
   return (
-    <div className="p-4 md:p-6 max-w-4xl mx-auto space-y-4">
+    <div className="p-4 md:p-6 max-w-4xl mx-auto space-y-5">
       {/* Header */}
       <div className="flex items-center justify-between">
         <h2 className="text-lg font-semibold">
@@ -186,7 +186,7 @@ export function NotesPage({
           Nenhuma nota encontrada.
         </p>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {sorted.map((note) => {
             const tags = parseTags(note.tags);
             return (
@@ -194,7 +194,7 @@ export function NotesPage({
                 key={note.id}
                 className="hover:border-primary/30 transition-colors"
               >
-                <CardContent className="p-3">
+                <CardContent className="p-4">
                   <div className="flex items-start gap-2">
                     <div className="mt-0.5 shrink-0 rounded-md bg-muted p-1.5">
                       <StickyNote className="h-4 w-4 text-muted-foreground" />
@@ -289,7 +289,7 @@ export function NotesPage({
               {editing ? "Editar Nota" : "Nova Nota"}
             </DialogTitle>
           </DialogHeader>
-          <form onSubmit={handleSubmit} className="space-y-3">
+          <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <Label htmlFor="title">Título *</Label>
               <Input

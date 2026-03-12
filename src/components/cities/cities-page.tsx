@@ -224,7 +224,7 @@ export function CitiesPage({ trip, cities, segments }: { trip: Trip; cities: Cit
             Nenhuma cidade adicionada ainda.
           </p>
         ) : (
-          <div className="space-y-2">
+          <div className="space-y-4">
             {cities.map((city, i) => {
               const nights = nightsBetween(city.arrivalDate, city.departureDate);
               return (
@@ -236,7 +236,7 @@ export function CitiesPage({ trip, cities, segments }: { trip: Trip; cities: Cit
                     onDrop={() => handleDrop(city.id)}
                     className={`transition-opacity ${draggedId === city.id ? "opacity-50" : ""}`}
                   >
-                    <CardContent className="p-3 flex items-center gap-3">
+                    <CardContent className="p-4 flex items-center gap-3">
                       <GripVertical className="h-4 w-4 text-muted-foreground cursor-grab shrink-0" />
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2">
@@ -320,7 +320,7 @@ export function CitiesPage({ trip, cities, segments }: { trip: Trip; cities: Cit
       {segments.length > 0 && (
         <div>
           <h2 className="text-lg font-semibold mb-3">Trechos ({segments.length})</h2>
-          <div className="space-y-2">
+          <div className="space-y-4">
             {segments.map((seg) => {
               const Icon = transportIcons[seg.transportType] || ArrowRight;
               const type = TRANSPORT_TYPES.find((t) => t.value === seg.transportType);
@@ -328,7 +328,7 @@ export function CitiesPage({ trip, cities, segments }: { trip: Trip; cities: Cit
                 <Card key={seg.id} className="cursor-pointer hover:border-primary/30 transition-colors"
                   onClick={() => { setEditingSegment(seg); setSegmentDialogOpen(true); }}
                 >
-                  <CardContent className="p-3 flex items-center gap-3">
+                  <CardContent className="p-4 flex items-center gap-3">
                     <Icon className="h-5 w-5 text-muted-foreground shrink-0" />
                     <div className="flex-1 min-w-0">
                       <p className="text-sm font-medium">
@@ -384,7 +384,7 @@ export function CitiesPage({ trip, cities, segments }: { trip: Trip; cities: Cit
           <DialogHeader>
             <DialogTitle>{editingCity ? "Editar Cidade" : "Adicionar Cidade"}</DialogTitle>
           </DialogHeader>
-          <form onSubmit={handleCitySubmit} className="space-y-3">
+          <form onSubmit={handleCitySubmit} className="space-y-4">
             <div>
               <Label htmlFor="name">Nome *</Label>
               <Input id="name" name="name" defaultValue={editingCity?.name} required placeholder="Ex: Madrid" />
@@ -393,7 +393,7 @@ export function CitiesPage({ trip, cities, segments }: { trip: Trip; cities: Cit
               <Label htmlFor="country">País</Label>
               <Input id="country" name="country" defaultValue={editingCity?.country || ""} placeholder="Ex: Espanha" />
             </div>
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-2 gap-4">
               <div>
                 <Label htmlFor="arrivalDate">Chegada</Label>
                 <Input id="arrivalDate" name="arrivalDate" type="date" defaultValue={editingCity?.arrivalDate || ""} />
@@ -424,8 +424,8 @@ export function CitiesPage({ trip, cities, segments }: { trip: Trip; cities: Cit
           <DialogHeader>
             <DialogTitle>{editingSegment ? "Editar Trecho" : "Novo Trecho"}</DialogTitle>
           </DialogHeader>
-          <form onSubmit={handleSegmentSubmit} className="space-y-3">
-            <div className="grid grid-cols-2 gap-3">
+          <form onSubmit={handleSegmentSubmit} className="space-y-4">
+            <div className="grid grid-cols-2 gap-4">
               <div>
                 <Label htmlFor="fromCityId">De</Label>
                 <select id="fromCityId" name="fromCityId" defaultValue={editingSegment?.fromCityId || ""}
@@ -453,7 +453,7 @@ export function CitiesPage({ trip, cities, segments }: { trip: Trip; cities: Cit
                 {TRANSPORT_TYPES.map((t) => <option key={t.value} value={t.value}>{t.label}</option>)}
               </select>
             </div>
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-2 gap-4">
               <div>
                 <Label htmlFor="departureDatetime">Partida</Label>
                 <Input id="departureDatetime" name="departureDatetime" type="datetime-local"
@@ -465,7 +465,7 @@ export function CitiesPage({ trip, cities, segments }: { trip: Trip; cities: Cit
                   defaultValue={editingSegment?.arrivalDatetime?.slice(0, 16) || ""} />
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-2 gap-4">
               <div>
                 <Label htmlFor="provider">Companhia/Provedor</Label>
                 <Input id="provider" name="provider" defaultValue={editingSegment?.provider || ""} placeholder="Ex: Renfe" />

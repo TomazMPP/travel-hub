@@ -107,7 +107,7 @@ export function TripDashboard({ trip, data }: TripDashboardProps) {
   const nextCity = trip.cities.find((c) => c.arrivalDate && c.arrivalDate > today);
 
   return (
-    <div className="p-4 md:p-6 max-w-5xl mx-auto space-y-4">
+    <div className="p-4 md:p-6 max-w-5xl mx-auto space-y-6">
       {/* Trip Header */}
       <div className="flex items-start justify-between">
         <div>
@@ -129,11 +129,11 @@ export function TripDashboard({ trip, data }: TripDashboardProps) {
       </div>
 
       {/* Quick Info Row */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {/* Current/Next City */}
         <Link href={`/trips/${trip.id}/cities`}>
           <Card className="hover:border-primary/30 transition-colors h-full">
-            <CardContent className="p-3">
+            <CardContent className="p-4">
               <div className="flex items-center gap-2 text-xs text-muted-foreground mb-1">
                 <MapPin className="h-3.5 w-3.5" />
                 {currentCity ? "Cidade atual" : "Próxima cidade"}
@@ -153,7 +153,7 @@ export function TripDashboard({ trip, data }: TripDashboardProps) {
         {/* Pending Tasks */}
         <Link href={`/trips/${trip.id}/tasks`}>
           <Card className="hover:border-primary/30 transition-colors h-full">
-            <CardContent className="p-3">
+            <CardContent className="p-4">
               <div className="flex items-center gap-2 text-xs text-muted-foreground mb-1">
                 <ListTodo className="h-3.5 w-3.5" />
                 Tarefas pendentes
@@ -166,7 +166,7 @@ export function TripDashboard({ trip, data }: TripDashboardProps) {
         {/* Checklist Progress */}
         <Link href={`/trips/${trip.id}/checklist`}>
           <Card className="hover:border-primary/30 transition-colors h-full">
-            <CardContent className="p-3">
+            <CardContent className="p-4">
               <div className="flex items-center gap-2 text-xs text-muted-foreground mb-1">
                 <CheckSquare className="h-3.5 w-3.5" />
                 Checklist
@@ -180,7 +180,7 @@ export function TripDashboard({ trip, data }: TripDashboardProps) {
         {/* Budget */}
         <Link href={`/trips/${trip.id}/finances`}>
           <Card className="hover:border-primary/30 transition-colors h-full">
-            <CardContent className="p-3">
+            <CardContent className="p-4">
               <div className="flex items-center gap-2 text-xs text-muted-foreground mb-1">
                 <DollarSign className="h-3.5 w-3.5" />
                 Gastos
@@ -202,7 +202,7 @@ export function TripDashboard({ trip, data }: TripDashboardProps) {
       {data.nextSegment && (
         <Link href={`/trips/${trip.id}/cities`}>
           <Card className="hover:border-primary/30 transition-colors">
-            <CardContent className="p-3 flex items-center gap-3">
+            <CardContent className="p-4 flex items-center gap-3">
               {(() => {
                 const Icon = transportIcons[data.nextSegment!.transportType] || ArrowRight;
                 return <Icon className="h-5 w-5 text-muted-foreground shrink-0" />;
@@ -224,8 +224,8 @@ export function TripDashboard({ trip, data }: TripDashboardProps) {
       {/* Cities Route */}
       {trip.cities.length > 0 && (
         <Card>
-          <CardContent className="p-3">
-            <div className="flex items-center justify-between mb-2">
+          <CardContent className="p-4">
+            <div className="flex items-center justify-between mb-3">
               <h3 className="text-sm font-semibold flex items-center gap-2">
                 <MapPin className="h-4 w-4" />
                 Rota
@@ -256,12 +256,12 @@ export function TripDashboard({ trip, data }: TripDashboardProps) {
         </Card>
       )}
 
-      <div className="grid md:grid-cols-2 gap-4">
+      <div className="grid md:grid-cols-2 gap-5">
         {/* Pending Tasks */}
         {data.pendingTasks.length > 0 && (
           <Card>
-            <CardContent className="p-3">
-              <div className="flex items-center justify-between mb-2">
+            <CardContent className="p-4">
+              <div className="flex items-center justify-between mb-3">
                 <h3 className="text-sm font-semibold flex items-center gap-2">
                   <ListTodo className="h-4 w-4" />
                   Tarefas
@@ -273,7 +273,7 @@ export function TripDashboard({ trip, data }: TripDashboardProps) {
                   Ver todas →
                 </Link>
               </div>
-              <div className="space-y-2">
+              <div className="space-y-2.5">
                 {data.pendingTasks.map((task) => {
                   const priority = TASK_PRIORITIES.find((p) => p.value === task.priority);
                   return (
@@ -296,8 +296,8 @@ export function TripDashboard({ trip, data }: TripDashboardProps) {
         {/* Upcoming Bookings */}
         {data.upcomingBookings.length > 0 && (
           <Card>
-            <CardContent className="p-3">
-              <div className="flex items-center justify-between mb-2">
+            <CardContent className="p-4">
+              <div className="flex items-center justify-between mb-3">
                 <h3 className="text-sm font-semibold flex items-center gap-2">
                   <Hotel className="h-4 w-4" />
                   Próximas reservas
@@ -309,7 +309,7 @@ export function TripDashboard({ trip, data }: TripDashboardProps) {
                   Ver todas →
                 </Link>
               </div>
-              <div className="space-y-2">
+              <div className="space-y-2.5">
                 {data.upcomingBookings.map((booking) => {
                   const type = BOOKING_TYPES.find((t) => t.value === booking.type);
                   return (
@@ -332,8 +332,8 @@ export function TripDashboard({ trip, data }: TripDashboardProps) {
         {/* Critical Documents */}
         {data.criticalDocuments.length > 0 && (
           <Card>
-            <CardContent className="p-3">
-              <div className="flex items-center justify-between mb-2">
+            <CardContent className="p-4">
+              <div className="flex items-center justify-between mb-3">
                 <h3 className="text-sm font-semibold flex items-center gap-2">
                   <FileText className="h-4 w-4" />
                   Documentos críticos
@@ -345,7 +345,7 @@ export function TripDashboard({ trip, data }: TripDashboardProps) {
                   Ver todos →
                 </Link>
               </div>
-              <div className="space-y-2">
+              <div className="space-y-2.5">
                 {data.criticalDocuments.map((doc) => (
                   <div key={doc.id} className="flex items-center gap-2 text-sm">
                     <span className="flex-1 truncate">{doc.title}</span>
@@ -364,8 +364,8 @@ export function TripDashboard({ trip, data }: TripDashboardProps) {
         {/* Pinned Notes */}
         {data.pinnedNotes.length > 0 && (
           <Card>
-            <CardContent className="p-3">
-              <div className="flex items-center justify-between mb-2">
+            <CardContent className="p-4">
+              <div className="flex items-center justify-between mb-3">
                 <h3 className="text-sm font-semibold flex items-center gap-2">
                   <StickyNote className="h-4 w-4" />
                   Notas fixadas
@@ -377,7 +377,7 @@ export function TripDashboard({ trip, data }: TripDashboardProps) {
                   Ver todas →
                 </Link>
               </div>
-              <div className="space-y-2">
+              <div className="space-y-2.5">
                 {data.pinnedNotes.map((note) => (
                   <div key={note.id} className="text-sm">
                     <p className="font-medium truncate">{note.title}</p>
