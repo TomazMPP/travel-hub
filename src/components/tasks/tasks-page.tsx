@@ -345,7 +345,7 @@ export function TasksPage({
                   id="priority"
                   name="priority"
                   defaultValue={editingTask?.priority ?? "medium"}
-                  className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm"
+                  className="flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm"
                 >
                   {TASK_PRIORITIES.map((p) => (
                     <option key={p.value} value={p.value}>{p.label}</option>
@@ -360,7 +360,7 @@ export function TasksPage({
                   id="category"
                   name="category"
                   defaultValue={editingTask?.category ?? "personal"}
-                  className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm"
+                  className="flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm"
                 >
                   {TASK_CATEGORIES.map((c) => (
                     <option key={c.value} value={c.value}>{c.label}</option>
@@ -373,7 +373,7 @@ export function TasksPage({
                   id="cityId"
                   name="cityId"
                   defaultValue={editingTask?.cityId ?? ""}
-                  className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm"
+                  className="flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm"
                 >
                   <option value="">Nenhuma</option>
                   {cities.map((c) => (

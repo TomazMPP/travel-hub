@@ -333,7 +333,7 @@ export function FinancesPage({
               <div>
                 <Label>Moeda</Label>
                 <select name="currency" defaultValue={editingExpense?.currency || baseCurrency}
-                  className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm"
+                  className="flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm"
                 >
                   <option value="BRL">BRL</option>
                   <option value="EUR">EUR</option>
@@ -346,7 +346,7 @@ export function FinancesPage({
               <div>
                 <Label>Categoria</Label>
                 <select name="category" defaultValue={editingExpense?.category || "food"}
-                  className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm"
+                  className="flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm"
                 >
                   {EXPENSE_CATEGORIES.map((c) => <option key={c.value} value={c.value}>{c.label}</option>)}
                 </select>
@@ -360,7 +360,7 @@ export function FinancesPage({
               <div>
                 <Label>Cidade</Label>
                 <select name="cityId" defaultValue={editingExpense?.cityId || ""}
-                  className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm"
+                  className="flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm"
                 >
                   <option value="">Nenhuma</option>
                   {cities.map((c) => <option key={c.id} value={c.id}>{c.name}</option>)}
@@ -401,7 +401,7 @@ export function FinancesPage({
               <div>
                 <Label>Tipo</Label>
                 <select name="type" defaultValue="credit_card"
-                  className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm"
+                  className="flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm"
                 >
                   {PAYMENT_METHOD_TYPES.map((t) => <option key={t.value} value={t.value}>{t.label}</option>)}
                 </select>
@@ -409,7 +409,7 @@ export function FinancesPage({
               <div>
                 <Label>Moeda</Label>
                 <select name="currency" defaultValue={baseCurrency}
-                  className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm"
+                  className="flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm"
                 >
                   <option value="BRL">BRL</option>
                   <option value="EUR">EUR</option>

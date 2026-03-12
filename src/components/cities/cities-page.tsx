@@ -429,7 +429,7 @@ export function CitiesPage({ trip, cities, segments }: { trip: Trip; cities: Cit
               <div>
                 <Label htmlFor="fromCityId">De</Label>
                 <select id="fromCityId" name="fromCityId" defaultValue={editingSegment?.fromCityId || ""}
-                  className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm"
+                  className="flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm"
                 >
                   <option value="">Selecione...</option>
                   {cities.map((c) => <option key={c.id} value={c.id}>{c.name}</option>)}
@@ -438,7 +438,7 @@ export function CitiesPage({ trip, cities, segments }: { trip: Trip; cities: Cit
               <div>
                 <Label htmlFor="toCityId">Para</Label>
                 <select id="toCityId" name="toCityId" defaultValue={editingSegment?.toCityId || ""}
-                  className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm"
+                  className="flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm"
                 >
                   <option value="">Selecione...</option>
                   {cities.map((c) => <option key={c.id} value={c.id}>{c.name}</option>)}
@@ -448,7 +448,7 @@ export function CitiesPage({ trip, cities, segments }: { trip: Trip; cities: Cit
             <div>
               <Label htmlFor="transportType">Tipo de transporte</Label>
               <select id="transportType" name="transportType" defaultValue={editingSegment?.transportType || "flight"}
-                className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm"
+                className="flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm"
               >
                 {TRANSPORT_TYPES.map((t) => <option key={t.value} value={t.value}>{t.label}</option>)}
               </select>

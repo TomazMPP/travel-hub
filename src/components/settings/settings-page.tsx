@@ -79,7 +79,7 @@ export function SettingsPage({ trip }: { trip: Trip }) {
               <div>
                 <Label htmlFor="status">Status</Label>
                 <select id="status" name="status" defaultValue={trip.status}
-                  className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm"
+                  className="flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm"
                 >
                   {TRIP_STATUSES.map((s) => (
                     <option key={s.value} value={s.value}>{s.label}</option>
@@ -114,7 +114,7 @@ export function SettingsPage({ trip }: { trip: Trip }) {
               <div>
                 <Label htmlFor="baseCurrency">Moeda base</Label>
                 <select id="baseCurrency" name="baseCurrency" defaultValue={trip.baseCurrency}
-                  className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm"
+                  className="flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm"
                 >
                   <option value="BRL">BRL</option>
                   <option value="EUR">EUR</option>
@@ -125,7 +125,7 @@ export function SettingsPage({ trip }: { trip: Trip }) {
               <div>
                 <Label htmlFor="timezone">Fuso horário</Label>
                 <select id="timezone" name="timezone" defaultValue={trip.timezone}
-                  className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm"
+                  className="flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm"
                 >
                   <option value="America/Sao_Paulo">São Paulo</option>
                   <option value="Europe/Madrid">Madrid</option>
@@ -139,7 +139,7 @@ export function SettingsPage({ trip }: { trip: Trip }) {
               <div>
                 <Label htmlFor="dateFormat">Formato de data</Label>
                 <select id="dateFormat" name="dateFormat" defaultValue={trip.dateFormat}
-                  className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm"
+                  className="flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm"
                 >
                   <option value="dd/MM/yyyy">dd/MM/yyyy</option>
                   <option value="MM/dd/yyyy">MM/dd/yyyy</option>

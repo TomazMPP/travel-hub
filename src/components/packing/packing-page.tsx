@@ -239,7 +239,7 @@ export function PackingPage({ tripId, items }: { tripId: string; items: PackingI
               <div>
                 <Label htmlFor="bagType">Mala</Label>
                 <select id="bagType" name="bagType" defaultValue="main_suitcase"
-                  className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm"
+                  className="flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm"
                 >
                   {BAG_TYPES.map((b) => <option key={b.value} value={b.value}>{b.label}</option>)}
                 </select>
@@ -247,7 +247,7 @@ export function PackingPage({ tripId, items }: { tripId: string; items: PackingI
               <div>
                 <Label htmlFor="category">Categoria</Label>
                 <select id="category" name="category" defaultValue="clothes"
-                  className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm"
+                  className="flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm"
                 >
                   {PACKING_CATEGORIES.map((c) => <option key={c.value} value={c.value}>{c.label}</option>)}
                 </select>

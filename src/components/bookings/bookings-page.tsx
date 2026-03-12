@@ -524,7 +524,7 @@ export function BookingsPage({
                   id="type"
                   name="type"
                   defaultValue={editing?.type || "other"}
-                  className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm"
+                  className="flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm"
                 >
                   {BOOKING_TYPES.map((t) => (
                     <option key={t.value} value={t.value}>
@@ -539,7 +539,7 @@ export function BookingsPage({
                   id="paymentStatus"
                   name="paymentStatus"
                   defaultValue={editing?.paymentStatus || "pending"}
-                  className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm"
+                  className="flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm"
                 >
                   <option value="pending">Pendente</option>
                   <option value="paid">Pago</option>
@@ -555,7 +555,7 @@ export function BookingsPage({
                   id="cityId"
                   name="cityId"
                   defaultValue={editing?.cityId || ""}
-                  className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm"
+                  className="flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm"
                 >
                   <option value="">Nenhuma</option>
                   {cities.map((c) => (
