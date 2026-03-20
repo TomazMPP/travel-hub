@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic'
+
 import { getTrips } from "./actions/trips";
 import { AppShell } from "@/components/app-shell";
 import { TripsListPage } from "@/components/trips/trips-list-page";
